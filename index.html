@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Portfolio Website</title>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">Mily</a>
+
+        <nav>
+            <a href="index.html" class="active"> Home</a>
+            <a href="Solar.html" >Cielo Nocturno</a>
+            <a href="Agrd.html" >Agradecimientos</a>
+            <a href="game.html" >Mini-Game</a>
+            <a href="personajes.html" >Personajes</a>
+            <a href="mssg.html" >Mensajes Bonitos</a>
+        </nav>
+        <div id="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+    </header>
+    <section class="home">
+        <div class="home-img">
+            <img src="https://i.pinimg.com/736x/80/cf/0c/80cf0c3354eee89131e49ebfa3c3f961.jpg" alt="">
+        </div>
+        <div class="home-content">
+            <h1>Hi, It's <span>Satoru and Suguru</span></h1><br>
+            
+            <p>Satoru Gojo: "Oye, Suguru, ¿has visto la página que Emily ha estado trabajando? Parece que está llena de sorpresas. Creo que quienes se atrevan a explorarla van a encontrar algo realmente interesante." <p></p><br>
+
+            <p>Suguru Geto: "Sí, lo he notado, Satoru. Emily ha hecho un gran trabajo. Además de esas sorpresas, creo que la gente va a descubrir más sobre quiénes somos y lo que representamos."</p><br>
+                
+             <p>Satoru Gojo: "Así es. Quien quiera saber más sobre el hechicero más fuerte y su mejor amigo, solo tiene que seguir navegando por aquí. Estoy seguro de que van a disfrutar lo que encuentren." </p><br>
+                
+             <p> Suguru Geto: "Definitivamente. Emily ha puesto mucho esfuerzo en esto, y vale la pena explorar cada rincón. Estoy seguro de que no se decepcionará."</p><br>
+                
+             <p>Satoru Gojo: "Así que adelante, explora la página y descubre las grandes sorpresas. ¡Nos vemos por ahí!"</p><br>
+                
+             <p>Suguru Geto: "Y no olvides leer. Podrías aprender algo nuevo sobre nosotros."</p></p>
+            <br>
+            <a href="cartas.html" class="btn">Clic aquí para tu regalo del día 11-Ago-2024</a>
+        </div>
+    </section>
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const nav = document.querySelector('nav');
+
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

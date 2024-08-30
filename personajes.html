@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Character Portfolio</title>
+    
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">Mily</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="Solar.html">Cielo Nocturno</a>
+            <a href="Agrd.html" >Agradecimientos</a>
+            <a href="game.html" >Mini-Game</a>
+            <a href="personajes.html" class="active">Personajes</a>
+            <a href="mssg.html" >Mensajes Bonitos</a>
+        </nav>
+        <div id="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+    </header>
+
+    <section class="container my-4">
+        <div class="row justify-content-center">
+            <!-- Primera carta -->
+            <div class="col-md-4 col-lg-2">
+                <div class="card">
+                    <img src="https://i.pinimg.com/736x/82/df/77/82df77947e28428a6cbe63e93762ccb8.jpg" class="card-img-top" alt="Satoru Gojo">
+                    <div class="card-body">
+                        <h5 class="card-title">Satoru Gojo</h5>
+                        <p class="card-text">Gojo se toma muy en serio la protección de aquellos que le importan.</p>
+                        <a href="satoru.html" class="btn btn-dark">Clic aquí</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Segunda carta -->
+            <div class="col-md-4 col-lg-2">
+                <div class="card">
+                    <img src="https://i.pinimg.com/736x/94/a9/45/94a9457ee7e4df902294db6378a7c47b.jpg" class="card-img-top" alt="Suguru Geto">
+                    <div class="card-body">
+                        <h5 class="card-title">Suguru Geto</h5>
+                        <p class="card-text">Conocido por su calma y su compromiso con proteger a los inocentes.</p>
+                        <a href="suguru.html" class="btn btn-dark">Clic aquí</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Tercera carta -->
+            <div class="col-md-4 col-lg-2">
+                <div class="card">
+                    <img src="https://i.pinimg.com/564x/9e/f1/4e/9ef14e49de5c0054de98e96d881f95d0.jpg" class="card-img-top" alt="Character 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Batman</h5>
+                        <p class="card-text">Es el vigilante más temido y respetado de Gotham City.</p>
+                        <a href="batman.html" class="btn btn-dark">Clic aquí</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Cuarta carta -->
+            <div class="col-md-4 col-lg-2">
+                <div class="card">
+                    <img src="https://i.pinimg.com/564x/06/48/a3/0648a3dbf425efc0db6429b40a90c48e.jpg" class="card-img-top" alt="Character 4">
+                    <div class="card-body">
+                        <h5 class="card-title">Deadpool</h5>
+                        <p class="card-text">Tiene un fuerte sentido de la lealtad hacia quienes considera sus amigos. </p>
+                        <a href="Deadpool.html" class="btn btn-dark">Clic aquí</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Quinta carta -->
+            <div class="col-md-4 col-lg-2">
+                <div class="card">
+                    <img src="https://i.pinimg.com/736x/54/d1/6a/54d16a1f808ebf26bce2a5536dc0b9fa.jpg" class="card-img-top" alt="Character 5">
+                    <div class="card-body">
+                        <h5 class="card-title">Lilpeep</h5>
+                        <p class="card-text">Para aquellos que no me conocen, soy Lil Peep.</p>
+                        <a href="Lilpeep.html" class="btn btn-dark">Clic aquí</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+      // Selecciona el ícono del menú y la barra de navegación
+      const menuToggle = document.getElementById('menu-toggle');
+      const nav = document.querySelector('nav');
+
+      // Añade un evento de clic al ícono del menú
+     menuToggle.addEventListener('click', () => {
+      // Alterna la clase 'active' en la barra de navegación
+       nav.classList.toggle('active');
+     });
+    </script>
+
+</body>
+</html>

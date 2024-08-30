@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobres de Cartas</title>
+    <style>
+        /* Importación de fuentes */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+        /* Reset de estilos y configuración básica */
+        * {
+            margin: 0px;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            font-size: 62.5%;
+        }
+
+        body {
+            background-image: url(sat.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100%;
+            min-height: 100vh;
+            background-color: black;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        h1 {
+            color: white;
+            font-size: 3.2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background-color: #b74b4b; /* Tira de fondo */
+            padding: 1rem 2rem;
+            border-radius: 5px;
+        }
+
+        /* Contenedor de los sobres */
+        .envelope-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* Crear 5 columnas en pantallas grandes */
+            gap: 2rem; /* Espacio entre los sobres */
+            padding: 2rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* Estilos para los sobres */
+        .envelope {
+            background-color: #b74b4b;
+            width: 100px;
+            height: 70px;
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .envelope:hover, .envelope.clicked {
+            transform: scale(1.1);
+        }
+
+        .envelope:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background-color: white;
+            clip-path: polygon(0 100%, 50% 0, 100% 100%);
+            border-radius: 10px 10px 0 0;
+        }
+
+        /* Estilos para las cartas */
+        .letter {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            color: black;
+            width: 300px;
+            height: 400px;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 25px #b74b4b;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .letter-content {
+            font-size: 1.6rem;
+            line-height: 2.2rem;
+        }
+
+        .close-btn, .back-btn {
+            background-color: #b74b4b;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 1rem;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            display: block;
+            width: 100%;
+        }
+
+        .close-btn:hover, .back-btn:hover {
+            background-color: #a13c3c;
+        }
+
+        .back-btn {
+            margin-top: 2rem;
+            font-size: 1.4rem;
+            text-align: center;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            /* Para pantallas de tablets y teléfonos */
+            .envelope-container {
+                grid-template-columns: repeat(3, 1fr); /* Cambia a 3 columnas */
+            }
+
+            .envelope {
+                width: 80px;
+                height: 56px;
+            }
+
+            .letter {
+                width: 250px;
+                height: 350px;
+            }
+
+            .letter-content {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Para pantallas de teléfonos más pequeñas */
+            .envelope-container {
+                grid-template-columns: repeat(2, 1fr); /* Cambia a 2 columnas */
+            }
+
+            .envelope {
+                width: 70px;
+                height: 49px;
+            }
+
+            .letter {
+                width: 200px;
+                height: 300px;
+            }
+
+            .letter-content {
+                font-size: 1.2rem;
+            }
+        }
+
+        .playlist {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            margin-top: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .playlist iframe {
+            width: 100%;
+            height: 80px;
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Sobres de Cartas</h1>
+    <div class="envelope-container">
+        <!-- Generación de 16 sobres -->
+        <div class="envelope" onclick="showLetter(1)"></div>
+        <div class="envelope" onclick="showLetter(2)"></div>
+        <div class="envelope" onclick="showLetter(3)"></div>
+        <div class="envelope" onclick="showLetter(4)"></div>
+        <div class="envelope" onclick="showLetter(5)"></div>
+        <div class="envelope" onclick="showLetter(6)"></div>
+        <div class="envelope" onclick="showLetter(7)"></div>
+        <div class="envelope" onclick="showLetter(8)"></div>
+        <div class="envelope" onclick="showLetter(9)"></div>
+        <div class="envelope" onclick="showLetter(10)"></div>
+        <div class="envelope" onclick="showLetter(11)"></div>
+        <div class="envelope" onclick="showLetter(12)"></div>
+        <div class="envelope" onclick="showLetter(13)"></div>
+        <div class="envelope" onclick="showLetter(14)"></div>
+        <div class="envelope" onclick="showLetter(15)"></div>
+        <div class="envelope" onclick="showLetter(16)"></div>
+    </div>
+
+    <!-- Cartas -->
+     <!-- Cartas -->
+    <div id="letter1" class="letter">
+        <div class="letter-content">
+            <p>Me gustaría decirte cuanto te amo, sé que no he sido muy
+                detallista o que no he podido expresar la manera en la que tu deseas, estoy intentando
+                poder mejorar eso, eres mi mundo entero cariño mío, eres muy maravilloso y talentoso, alguien del
+                que siempre he estado orgullosa y que nunca me arrepentiría por nada del mundo.
+            </p>
+        </div>
+        <div class="close-btn" onclick="closeLetter(1)">Cerrar</div>
+    </div>
+    <div id="letter2" class="letter">
+        <div class="letter-content">
+            <p>Te volviste alguien tan importante para mí, me hiciste ver el mundo de muchos colores, 
+                mis días empezaron a ser bonitos y llenos de sonrisas porque te pienso y amar llega 
+                hasta donde sea que yo esté, como nunca pretendí amar a alguien.</p>
+        </div>
+        <div class="close-btn" onclick="closeLetter(2)">Cerrar</div>
+    </div>
+    <div id="letter3" class="letter">
+        <div class="letter-content">
+            <p>Entre constelaciones, planetas y sueños,
+                Tú y yo bailamos al ritmo de los vientos.
+                En cada giro, en cada paso que damos,
+                Construimos un universo donde nos amamos.</p>
+        </div>
+        <div class="close-btn" onclick="closeLetter(3)">Cerrar</div>
+    </div>
+    <div id="letter4" class="letter">
+        <div class="letter-content">
+            <p>A pesar de la distancia y lo que ha pasado eres lo más especial en mi vida, 
+                así como lo que estoy sintiendo por ti. Me he dado cuenta de que te amo más
+                 de lo que pensé, eres una persona tan bonita en todos los sentidos, quiero 
+                 amarte demasiado hasta mis últimos días.</p>
+        </div>
+        <div class="close-btn" onclick="closeLetter(4)">Cerrar</div>
+    </div>
+    <div id="letter5" class="letter">
+        <div class="letter-content">
+            <p>Si el universo es eterno, así lo es nuestro amor,
+                Porque en tus brazos encuentro la inmensidad y el calor.
+                No hay estrella que brille tanto como lo haces tú,
+                Eres mi galaxia, mi cosmos, mi cielo azul.
+                
+                </p>
+        </div>
+        <div class="close-btn" onclick="closeLetter(5)">Cerrar</div>
+    </div>
+    <div id="letter6" class="letter">
+        <div class="letter-content">
+            <p>Eres mi lugar seguro, la causa de mis sonrisas hacia el teléfono, no te amo por tu físico,
+                 aunque eres hermoso, pero amo más que todo lo que eres, por cómo luchas por lo que quieres
+                  y cada día sales adelante a pesar de las dificultades. </p>
+        </div>
+        <div class="close-btn" onclick="closeLetter(6)">Cerrar</div>
+    </div>
+    <div id="letter7" class="letter">
+        <div class="letter-content">
+            <p>En el vasto universo, hay miles de estrellas,
+                Pero ninguna brilla tanto como tu mirada en mi cielo.
+                Cada noche, al contemplar el firmamento,
+                Recuerdo que en tus ojos encuentro mi universo entero.</p>
+        </div>
+        <div class="close-btn" onclick="closeLetter(7)">Cerrar</div>
+    </div>
+    <div id="letter8" class="letter">
+        <div class="letter-content">
+            <p>Eres la hermosa luna que ilumina mis días en los momentos más difíciles, 
+                la calma que me tranquiliza, el sol que sale en su momento, mi compañía 
+                y consuelo en mis momentos de ansiedad, la paz en mi vida</p>
+        </div>
+        <div class="close-btn" onclick="closeLetter(8)">Cerrar</div>
+    </div>
+    <div id="letter9" class="letter">
+        <div class="letter-content">
+            <p>Te amo sin importar donde y como estemos, te voy a amar con todo mi ser sin importar cuán lejos
+                estemos.
+            </p>
+        </div>
+        <div class="close-btn" onclick="closeLetter(9)">Cerrar</div>
+    </div>
+    <div id="letter10" class="letter">
+        <div class="letter-content">
+            <p>En el vasto universo, los planetas danzan,
+                Pero nada se compara con nuestra alianza.
+                Giras en mi órbita, yo en la tuya,
+                Somos un sistema solar de amor, donde todo fluye.</p>
+        </div>
+        <div class="close-btn" onclick="closeLetter(10)">Cerrar</div>
+    </div>
+    <div id="letter11" class="letter">
+        <div class="letter-content">
+            <p>Las almas que se encuentran y se reconocen nunca se sueltan,
+                ni con el silencio, ni con la distancia, ni con las vueltas de la vida.
+            </p>
+            <p>-Mario Benedetti.</p>
+        </div>
+        <div class="close-btn" onclick="closeLetter(11)">Cerrar</div>
+    </div>
+    <div id="letter12" class="letter">
+        <div class="letter-content">
+            <p>Sé que este amor está lleno de altibajos y desafios, pero estoy dispuesta a enfrentarlos
+                todos contigo. Quiero estar contigo en los buenos y malos momentos, y ser tu apoyo
+                incondicional en la vida.
+            </p>
+        </div>
+        <div class="close-btn" onclick="closeLetter(12)">Cerrar</div>
+    </div>
+    <div id="letter13" class="letter">
+        <div class="letter-content">
+            <p>Si el universo es un viaje, tú eres mi destino,
+                En cada estrella veo reflejado tu camino.
+                Recorro constelaciones buscando tu calor,
+                Eres la brújula que me guía hacia el amor.</p>
+        </div>
+        <div class="close-btn" onclick="closeLetter(13)">Cerrar</div>
+    </div>
+    <div id="letter14" class="letter">
+        <div class="letter-content">
+            <p>Eres mi sol en la mañana,
+                mi estrella en la noche,
+                en tu sonrisa encuentro paz,
+                y en tus ojos, mi hogar.
+            </p>
+        </div>
+        <div class="close-btn" onclick="closeLetter(14)">Cerrar</div>
+    </div>
+    <div id="letter15" class="letter">
+        <div class="letter-content">
+            <p>Al mirarte encuentro la misma fascinación e inexplicable que Vicent
+                Van Gogh sentía al contemplar las estrellas.
+            </p>
+        </div>
+        <div class="close-btn" onclick="closeLetter(15)">Cerrar</div>
+    </div>
+
+    <div id="letter16" class="letter">
+        <div class="letter-content">
+            <p>Eres el faro que brilla en la noche, con fuerza serena y un corazón sincero
+                Tu risa, un canto que ahuyenta el reproche, en tu abrazo hallo siempre
+                mi sendero.
+            </p>
+        </div>
+        <div class="close-btn" onclick="closeLetter(16)">Cerrar</div>
+    </div>
+
+    <!-- ... cartas ... -->
+
+    <!-- Botón de regresar -->
+    <a href="index.html" class="back-btn">Regresar</a>
+
+    <div class="playlist">
+        <h2>Playlist Minecraft</h2>
+        <iframe src="calm_your_heart_minecraft_ambience_w_music_(youconvert.net).mp3" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"></iframe>
+    </div>
+
+    <script>
+        function showLetter(number) {
+            const envelope = document.querySelectorAll('.envelope')[number - 1];
+            envelope.classList.add('clicked');
+            document.getElementById('letter' + number).style.display = 'block';
+        }
+
+        function closeLetter(number) {
+            const envelope = document.querySelectorAll('.envelope')[number - 1];
+            envelope.classList.remove('clicked');
+            document.getElementById('letter' + number).style.display = 'none';
+        }
+    </script>
+</body>
+</html>

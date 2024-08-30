@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Portfolio Website</title>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">Mily</a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="Solar.html">Cielo Nocturno</a>
+            <a href="Agrd.html" >Agradecimientos</a>
+            <a href="game.html" >Mini-Game</a>
+            <a href="personajes.html" class="active">Personajes</a>
+            <a href="mssg.html" >Mensajes Bonitos</a>
+        </nav>
+        <div id="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+    </header>
+    <section class="home">
+        <div class="home-img">
+            <img src="https://i.pinimg.com/564x/eb/5f/ae/eb5faea3e416c76e32f4212d560b6ee3.jpg" alt="">
+        </div>
+        <div class="home-content">
+            <h1>Que tal, soy <span>Satoru Gojo</span></h1><br>
+            
+            <p>"Soy el más fuerte, eso es un hecho que nadie puede negar. Pero más allá de la fuerza, 
+                lo que realmente importa es la gente con la que decides compartir el camino. Suguru ha sido mi mejor amigo desde 
+                que éramos estudiantes en Jujutsu Tech. Él siempre ha tenido esa calma, esa capacidad de ver más allá de la batalla,
+                de encontrar un propósito en todo esto. Mientras yo soy el que arrasa con todo lo que se interpone en nuestro camino, 
+                él es el que busca el porqué. Nos complementamos de una manera que nadie más podría. <br> Con Suguru a mi lado, siento que no 
+                importa cuán fuerte sea el enemigo o cuán sombrío se vuelva el mundo, siempre habrá alguien que me mantenga enfocado y me 
+                recuerde por qué luchamos en primer lugar. <br>
+
+                Él es más que un compañero; es mi equilibrio, y juntos, no hay nada que no podamos enfrentar."</p><br>
+
+                
+            <br>
+            <p>Eduardo, escucha bien, no suelo decir esto muy a menudo, pero lo has hecho increíblemente bien. Siempre supe que tenías talento, 
+                pero verlo en acción es algo distinto. Felicidades, de verdad. Sigue así, y quién sabe, tal vez algún día llegues a ser tan fuerte como yo... o casi.</p><br>
+            <a href="personajes.html" class="btn">Regresar</a>
+        </div>
+    </section>
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const nav = document.querySelector('nav');
+
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

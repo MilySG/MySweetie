@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Portfolio Website</title>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">Mily</a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="Solar.html">Cielo Nocturno</a>
+            <a href="Agrd.html" >Agradecimientos</a>
+            <a href="game.html" >Mini-Game</a>
+            <a href="personajes.html" class="active">Personajes</a>
+            <a href="mssg.html" >Mensajes Bonitos</a>
+        </nav>
+        <div id="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+    </header>
+    <section class="home">
+        <div class="home-img">
+            <img src="https://i.pinimg.com/736x/4e/d2/72/4ed272d8ce30dd8d6c609e55dee94258.jpg" alt="">
+        </div>
+        <div class="home-content">
+            <h1>¡Hola! <span>¿Qué tal,pequeño chimichangas?</span></h1><br>
+            
+            <p> ¡Es tu amigable vecino Deadpool, el mercenario bocazas, el rey del sarcasmo, y el único superhéroe que rompe la cuarta pared como si fuera una piñata en una fiesta mexicana!
+
+                Pero hoy no se trata de mí, aunque, seamos honestos, todo siempre se trata de mí. No, hoy 
+                vengo a dar un saludo especial a un tipo que realmente se lo ha ganado. Eduardo, sí, hablo 
+                de ti, campeón. He escuchado que has estado trabajando duro, como si estuvieras entrenando 
+                para vencer a Thanos con una mano atada a la espalda. ¡Y déjame decirte que eso no es poca cosa!</p><br>
+
+                <p>Así que, felicidades, mi buen amigo. Todo tu esfuerzo no ha pasado desapercibido. Si alguien merece
+                  una ronda de aplausos (y tal vez un montón de tacos), ese eres tú. ¡Sigue así, porque si yo puedo 
+                  sobrevivir a todo tipo de locuras, tú puedes lograr lo que te propongas!</p> <br>
+
+                 <p></p><br>
+
+                
+            <br>
+            <p>Y recuerda, si alguna vez necesitas a alguien para un equipo de superhéroes (o simplemente para hacer que
+                la vida sea un poco más divertida), ya sabes dónde encontrarme. ¡Chimichangas para todos!"</p><br>
+            <a href="personajes.html" class="btn">Regresar</a>
+        </div>
+    </section>
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const nav = document.querySelector('nav');
+
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

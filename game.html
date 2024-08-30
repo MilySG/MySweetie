@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atrapa las Cajas</title>
+    <link rel="stylesheet" href="style.css">
+    <header>
+        <a href="#" class="logo">Mily</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="Solar.html">Cielo Nocturno</a>
+            <a href="Agrd.html">Agradecimientos</a>
+            <a href="game.html" class="active">Mini-Game</a>
+            <a href="personajes.html">Personajes</a>
+            <a href="mssg.html">Mensajes Bonitos</a>
+        </nav>
+        <div id="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+    </header>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+            font-family: Arial, sans-serif;
+        }
+
+        #gameContainer {
+            position: relative;
+            width: 300px;
+            height: 500px;
+            background-color: #444;
+            overflow: hidden;
+            border: 2px solid #fff;
+            border-radius: 10px;
+        }
+
+        #player {
+            position: absolute;
+            bottom: 10px;
+            left: 130px;
+            width: 40px;
+            height: 40px;
+            background-color: #ffcc00;
+            border-radius: 5px;
+        }
+
+        .box {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #ff5733;
+            border-radius: 5px;
+        }
+
+        #score {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #fff;
+            font-size: 20px;
+        }
+
+        #winMessage, #loseMessage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+        }
+
+        #giftBox {
+            width: 100px;
+            height: 100px;
+            background-color: #ff00ff;
+            margin: 20px auto;
+            cursor: pointer;
+            border-radius: 10px;
+            display: none;
+        }
+
+        #birthdayCard {
+    width: 100%; /* Cambié el ancho para que ocupe el 90% de la pantalla */
+    max-width: 650px; /* Se establece un ancho máximo para pantallas más grandes */
+    height: 550px; /* Ajusta la altura automáticamente */
+    background-color: #ffcc00;
+    margin: 20px auto;
+    padding: 20px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 10px;
+    color: #000;
+    word-wrap: break-word; /* Asegura que las palabras se ajusten correctamente dentro del contenedor */
+}
+
+
+        #winMessage button, #loseMessage button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+        }
+
+        /* Estilos para los botones de control */
+        #controls {
+            display: flex;
+            justify-content: space-between;
+            width: 300px;
+            margin-top: 20px;
+        }
+
+        .control-btn {
+            width: 80px;
+            height: 80px;
+            background-color: #fff;
+            color: #000;
+            font-size: 24px;
+            border: 2px solid #000;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 80px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .control-btn:active {
+            background-color: #ffcc00;
+        }
+
+        @media (max-width: 768px) {
+            #gameContainer {
+                width: 240px;
+                height: 400px;
+            }
+
+            #controls {
+                width: 240px;
+            }
+
+            .control-btn {
+                width: 60px;
+                height: 60px;
+                line-height: 60px;
+                font-size: 20px;
+            }
+
+            #player {
+                left: 100px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="gameContainer">
+        <div id="player"></div>
+        <div id="score">Puntuación: 0</div>
+        <div id="winMessage">
+            <p>¡Felicidades, ganaste!</p>
+            <button onclick="showGift()">Aquí está tu premio</button>
+            <div id="giftBox" onclick="openGift()">🎁</div>
+            <div id="birthdayCard">
+                Feliz Cumpleaños Cariño mío, cumple muchísimos años más.
+                <p>Me alegra mucho que hayas jugado este mini juego que hice especialmente para ti.
+                    También espero que este detalle te haya sacado una sonrisa y te recuerde cuánto te quiero.
+                    Siempre estaré aquí para celebrar cada uno de tus cumpleaños.
+                    Te amo muchoooo </p>
+            </div>
+        </div>
+        <div id="loseMessage">
+            <p>Perdiste</p>
+            <button onclick="restartGame()">Volver a intentarlo</button>
+        </div>
+    </div>
+
+    <!-- Botones de control -->
+    <div id="controls">
+        <div class="control-btn" id="leftBtn">⬅️</div>
+        <div class="control-btn" id="rightBtn">➡️</div>
+    </div>
+
+    <script>
+        const gameContainer = document.getElementById('gameContainer');
+        const player = document.getElementById('player');
+        const scoreDisplay = document.getElementById('score');
+        const winMessage = document.getElementById('winMessage');
+        const loseMessage = document.getElementById('loseMessage');
+        const giftBox = document.getElementById('giftBox');
+        const birthdayCard = document.getElementById('birthdayCard');
+        const leftBtn = document.getElementById('leftBtn');
+        const rightBtn = document.getElementById('rightBtn');
+
+        let score = 0;
+        let playerX = 130;
+        const playerSpeed = 30;
+        const boxSpeed = 1;
+        let boxInterval;
+        let gameOver = false;
+
+        function movePlayer(direction) {
+            if (gameOver) return;
+
+            if (direction === 'left') {
+                playerX = Math.max(0, playerX - playerSpeed);
+            } else if (direction === 'right') {
+                playerX = Math.min(gameContainer.clientWidth - player.clientWidth, playerX + playerSpeed);
+            }
+            player.style.left = playerX + 'px';
+        }
+
+        // Event listeners for touch controls
+        leftBtn.addEventListener('click', () => movePlayer('left'));
+        rightBtn.addEventListener('click', () => movePlayer('right'));
+
+        function createBox() {
+            if (gameOver) return;
+
+            const box = document.createElement('div');
+            box.classList.add('box');
+            box.style.left = Math.random() * (gameContainer.clientWidth - 30) + 'px';
+            gameContainer.appendChild(box);
+
+            let boxY = 0;
+            function moveBox() {
+                if (gameOver) return;
+
+                boxY += boxSpeed;
+                box.style.top = boxY + 'px';
+
+                // Check collision
+                if (boxY + box.clientHeight >= player.offsetTop &&
+                    parseInt(box.style.left) >= playerX &&
+                    parseInt(box.style.left) <= playerX + player.clientWidth) {
+                    score++;
+                    scoreDisplay.innerText = `Puntuación: ${score}`;
+                    box.remove();
+
+                    if (score === 3) {
+                        winGame();
+                    }
+                } else if (boxY > gameContainer.clientHeight) {
+                    box.remove();
+                    loseGame();
+                } else {
+                    requestAnimationFrame(moveBox);
+                }
+            }
+            moveBox();
+        }
+
+        function removeAllBoxes() {
+            const boxes = document.querySelectorAll('.box');
+            boxes.forEach(box => box.remove());
+        }
+
+        function winGame() {
+            gameOver = true;
+            clearInterval(boxInterval);
+            removeAllBoxes();
+            winMessage.style.display = 'block';
+        }
+
+        function loseGame() {
+            gameOver = true;
+            clearInterval(boxInterval);
+            removeAllBoxes();
+            loseMessage.style.display = 'block';
+        }
+
+        function restartGame() {
+            gameOver = false;
+            loseMessage.style.display = 'none';
+            winMessage.style.display = 'none';
+            giftBox.style.display = 'none';
+            birthdayCard.style.display = 'none';
+            score = 0;
+            scoreDisplay.innerText = `Puntuación: ${score}`;
+            startGame();
+        }
+
+        function showGift() {
+            giftBox.style.display = 'block';
+        }
+
+        function openGift() {
+            giftBox.style.display = 'none';
+            birthdayCard.style.display = 'flex';
+        }
+
+        function startGame() {
+            boxInterval = setInterval(createBox, 3000);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') movePlayer('left');
+            if (e.key === 'ArrowRight') movePlayer('right');
+        });
+
+        startGame();
+    </script>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const nav = document.querySelector('nav');
+
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>

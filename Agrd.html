@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre y Carta - Minecraft</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #87CEEB; /* Cielo de Minecraft */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .sobre {
+            width: 350px; /* Ajusta el ancho del sobre */
+            height: 220px; /* Ajusta la altura del sobre */
+            background-color: #8B4513; /* Color marrón del sobre */
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sobre::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            top: 0;
+            left: 0;
+            border-left: 175px solid transparent;
+            border-right: 175px solid transparent;
+            border-bottom: 110px solid #CD853F; /* Parte de la solapa del sobre */
+            border-radius: 10px 10px 0 0;
+        }
+
+        .carta {
+            width: 85%; /* Ajusta el ancho de la carta */
+            height: 350px; /* Ajusta la altura de la carta para que sea más larga */
+            background-color: #FFF;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 18px; /* Tamaño de letra incrementado */
+            line-height: 1.6; /* Mejor espaciado entre líneas */
+            display: none;
+            z-index: 1;
+            position: absolute;
+            top: 10%;
+            transform: translateY(-50%);
+            overflow-y: auto; /* Permite hacer scroll si el contenido sobrepasa la altura */
+        }
+
+        .mostrar-carta {
+            cursor: pointer;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #228B22; /* Verde típico de Minecraft */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 16px;
+        }
+
+        .regresar {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #DC143C; /* Rojo para el botón de regresar */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .playlist {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .playlist iframe {
+            width: 280px;
+            height: 80px;
+            border-radius: 10px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .sobre {
+                width: 80%;
+                height: 180px;
+            }
+
+            .carta {
+                width: 90%;
+                height: 280px;
+                font-size: 16px;
+            }
+
+            .playlist iframe {
+                width: 200px;
+                height: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sobre">
+        <div class="carta">
+            <h3>Querido jugador,</h3>
+            <p>Eres especial para mí, te quiero decir tantas cosas mi chico lindo. 
+                Jamás imaginé sentir lo que siento por ti; nunca me pasó por la mente
+                que serías muy especial en mi vida y que te esforzaras para que te dijera
+                un "Te amo" y que te extrañara a montones.</p>
+            <p>Feliz cumpleaños cariño mío, porque te lo mereces.</p>
+            <p>Atentamente,<br>Tu Wiwi.</p>
+        </div>
+    </div>
+
+    <button class="mostrar-carta">Abrir carta</button>
+
+    <!-- Botón de regresar al índice -->
+    <button class="regresar" onclick="window.location.href='index.html';">Regresar</button>
+
+    <div class="playlist">
+        <h2>Playlist Minecraft</h2>
+        <iframe src="calm_your_heart_minecraft_ambience_w_music_(youconvert.net).mp3" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"></iframe>
+    </div>
+
+    <script>
+        const carta = document.querySelector('.carta');
+        const botonCarta = document.querySelector('.mostrar-carta');
+
+        botonCarta.addEventListener('click', () => {
+            carta.style.display = carta.style.display === 'block' ? 'none' : 'block';
+        });
+    </script>
+
+</body>
+</html>
